@@ -3,7 +3,7 @@
     <h1>Solar System Planets</h1>
 
     <planet-form @add:planet="addPlanet" />
-    <planet-table :planets="planets" />
+    <planet-table :planets="planets" @delete:planet="deletePlanet" />
   </div>
 </template>
 
@@ -51,6 +51,11 @@ export default {
       const id = lastId + 1;
       const newPlanet = { ...planet, id};
       this.planets = [ ...this.planets, newPlanet];
+    },
+    deletePlanet(id) {
+      this.planets = this.planets.filter(
+          planet => planet.id !== id
+      )
     }
   }
 }

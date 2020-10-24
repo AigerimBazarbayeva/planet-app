@@ -12,14 +12,14 @@
       />
       <label>Planet radius</label>
       <input
-          type="text"
+          type="number"
           :class="{ 'has-error': submitting && invalidRadius}"
           v-model = "planet.radius"
           @focus="clearStatus"
       />
       <label>Planet distance</label>
       <input
-          type="text"
+          type="number"
           :class="{ 'has-error': submitting && invalidDistance}"
           v-model = "planet.distance"
           @focus="clearStatus"
