@@ -3,7 +3,11 @@
     <h1>Solar System Planets</h1>
 
     <planet-form @add:planet="addPlanet" />
-    <planet-table :planets="planets" @delete:planet="deletePlanet" />
+    <planet-table
+        :planets="planets"
+        @delete:planet="deletePlanet"
+        @edit:planet="editPlanet"
+    />
   </div>
 </template>
 
@@ -20,26 +24,7 @@ export default {
   },
   data() {
     return {
-      planets: [
-        {
-          id: 1,
-          name: 'Earth',
-          radius: '100',
-          distance: '100',
-        },
-        {
-          id: 2,
-          name: 'Earth',
-          radius: '100',
-          distance: '100',
-        },
-        {
-          id: 3,
-          name: 'Earth',
-          radius: '100',
-          distance: '100',
-        },
-      ],
+      planets: [],
     }
   },
   methods: {
@@ -55,6 +40,11 @@ export default {
     deletePlanet(id) {
       this.planets = this.planets.filter(
           planet => planet.id !== id
+      )
+    },
+    editPlanet(id, updatedPlanet){
+      this.planets = this.planets.map(planet =>
+        planet.id === id ? updatedPlanet : planet
       )
     }
   }
