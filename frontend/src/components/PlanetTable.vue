@@ -3,7 +3,7 @@
     <table>
       <thead>
       <tr>
-        <th>Planet name</th>
+        <th>Planet name:</th>
         <th>Planet radius: (km)</th>
         <th>Planet distance: (mln km)</th>
       </tr>
