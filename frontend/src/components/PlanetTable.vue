@@ -1,11 +1,13 @@
 <template>
   <div id="planet-table">
-    <table>
+    <p v-if="planets.length < 1" class="empty-table">No planets</p>
+    <table v-else>
       <thead>
       <tr>
         <th>Planet name:</th>
         <th>Planet radius: (km)</th>
         <th>Planet distance: (mln km)</th>
+        <th>Actions:</th>
       </tr>
       </thead>
       <tbody>
@@ -13,6 +15,10 @@
         <td>{{ planet.name }}</td>
         <td>{{ planet.radius }}</td>
         <td>{{ planet.distance }}</td>
+        <td>
+          <button>Edit</button>
+          <button @click="$emit('delete:planet', planet.id)">Delete</button>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -28,4 +34,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  button {
+    margin: 0 0.5rem 0 0;
+  }
+</style>
