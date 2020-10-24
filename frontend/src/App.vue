@@ -2,6 +2,7 @@
   <div id="app" class="small-container">
     <h1>Solar System Planets</h1>
 
+    <planet-form @add:planet="addPlanet" />
     <planet-table :planets="planets" />
   </div>
 </template>
@@ -9,11 +10,13 @@
 <script>
 
 import PlanetTable from '@/components/PlanetTable.vue'
+import PlanetForm from "@/components/PlanetForm.vue";
 
 export default {
   name: 'app',
   components: {
     PlanetTable,
+    PlanetForm,
   },
   data() {
     return {
@@ -39,6 +42,17 @@ export default {
       ],
     }
   },
+  methods: {
+    addPlanet(planet) {
+      const lastId =
+          this.planets.length > 0
+          ? this.planets[this.planets.length - 1].id
+          : 0;
+      const id = lastId + 1;
+      const newPlanet = { ...planet, id};
+      this.planets = [ ...this.planets, newPlanet];
+    }
+  }
 }
 
 </script>
