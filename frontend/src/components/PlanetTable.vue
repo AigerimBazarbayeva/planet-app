@@ -4,10 +4,12 @@
     <table v-else>
       <thead>
       <tr>
-        <th>Planet name:</th>
-        <th>Planet radius: (km)</th>
-        <th>Planet distance: (mln km)</th>
+        <th>Name:</th>
+        <th>Radius: (km)</th>
+        <th>Distance: (mln km)</th>
         <th>Actions:</th>
+        <th>Choose:</th>
+        
       </tr>
       </thead>
       <tbody>
@@ -30,11 +32,16 @@
         </td>
         <td v-else>
           <button @click="editMode(planet)">Edit</button>
-          <button @click="$emit('delete:planet', planet.id)">Delete</button>
+          <button @click="$emit('delete:planet', planet._id)">Delete</button>
+        </td>
+        <td>
+          <input type="checkbox" @click="toggleCheckBox(planet)">
         </td>
       </tr>
       </tbody>
     </table>
+    <p v-if="lastRequestedDistance != null"> Distance is {{ lastRequestedDistance }}</p>
+    <button @click="calculateDistance()">Calculate</button>
   </div>
 </template>
 <script>
@@ -42,11 +49,13 @@
 export default {
   name: 'planet-table',
   props: {
-    planets: Array
+    planets: Array,
+    lastRequestedDistance: Number
   },
   data() {
     return {
       editing: null,
+      checkedPlanets: new Set()
     }
   },
   methods: {
@@ -60,8 +69,23 @@ export default {
     },
     editPlanet(planet) {
       if(planet.name === '' || planet.radius === '' || planet.distance === '') return
-      this.$emit('edit: planet', planet.id, planet)
+      this.$emit('edit:planet', planet.id, planet)
       this.editing = null
+    },
+    toggleCheckBox(planet) {
+      if(this.checkedPlanets.has(planet)){
+        this.checkedPlanets.delete(planet)
+      }else{
+        this.checkedPlanets.add(planet)
+      }
+    },
+    calculateDistance(){
+      if(this.checkedPlanets.size != 2){
+        alert("Choose two planets only!")
+      }else{
+        const arrayChecked = Array.from(this.checkedPlanets)
+        this.$emit('calculate-distance', arrayChecked[0]._id, arrayChecked[1]._id)
+      }
     }
   }
 }

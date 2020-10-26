@@ -5,8 +5,10 @@
     <planet-form @add:planet="addPlanet" />
     <planet-table
         :planets="planets"
+        :lastRequestedDistance="lastRequestedDistance"
         @delete:planet="deletePlanet"
         @edit:planet="editPlanet"
+        @calculate-distance="calculateDistance"
     />
   </div>
 </template>
@@ -15,6 +17,7 @@
 
 import PlanetTable from '@/components/PlanetTable.vue'
 import PlanetForm from "@/components/PlanetForm.vue";
+import axios from 'axios';
 
 export default {
   name: 'app',
@@ -25,27 +28,58 @@ export default {
   data() {
     return {
       planets: [],
+      lastRequestedDistance: null,
     }
   },
+  async mounted(){
+    this.getPlanets()
+  },
   methods: {
-    addPlanet(planet) {
-      const lastId =
-          this.planets.length > 0
-          ? this.planets[this.planets.length - 1].id
-          : 0;
-      const id = lastId + 1;
-      const newPlanet = { ...planet, id};
-      this.planets = [ ...this.planets, newPlanet];
+    async getPlanets() {
+      try{
+        const response = await axios.get('http://localhost:3000/api/planets')
+        const data =  response.data
+        this.planets = data
+      } catch(error) {
+        console.error(error)
+      }
     },
-    deletePlanet(id) {
-      this.planets = this.planets.filter(
-          planet => planet.id !== id
-      )
+    async addPlanet(planet) {
+      try{
+        const response = await axios.post('http://localhost:3000/api/planets', planet)
+        const data = response.data
+        this.planets = [... this.planets, data]
+      } catch(error){
+        console.error(error)
+      }
     },
-    editPlanet(id, updatedPlanet){
-      this.planets = this.planets.map(planet =>
-        planet.id === id ? updatedPlanet : planet
-      )
+    async deletePlanet(id) {
+      try{
+        await axios.delete('http://localhost:3000/api/planets/' + id)
+        this.planets = this.planets.filter(planet => planet._id !== id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async editPlanet(id, updatedPlanet){
+      try{
+        const response = await axios.put('http://localhost:3000/api/planets' + id, updatedPlanet)
+        const data = await response.json()
+        this.planets = this.planets.map(planet => (planet.id === id ? data: planet))
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async calculateDistance(id1, id2) { 
+        try{
+          const response = await axios.get('http://localhost:3000/api/planets/distance/' + id1 + '/' + id2)
+          this.lastRequestedDistance = response.data.distance
+          console.log(response)
+        } catch(error){
+          console.error(error)
+        }
+      
+      console.log()
     }
   }
 }
