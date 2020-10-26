@@ -63,9 +63,9 @@ export default {
     },
     async editPlanet(id, updatedPlanet){
       try{
-        const response = await axios.put('http://localhost:3000/api/planets' + id, updatedPlanet)
-        const data = await response.json()
-        this.planets = this.planets.map(planet => (planet.id === id ? data: planet))
+        const response = await axios.put('http://localhost:3000/api/planets/' + id, updatedPlanet)
+        const data = await response.data
+        this.planets = this.planets.map(planet => (planet._id === id ? data: planet))
       } catch (error) {
         console.error(error)
       }

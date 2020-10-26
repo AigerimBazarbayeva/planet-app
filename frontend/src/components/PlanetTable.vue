@@ -13,20 +13,20 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="planet in planets" :key="planet.id">
-        <td v-if="editing === planet.id">
+      <tr v-for="planet in planets" :key="planet._id">
+        <td v-if="editing === planet._id">
           <input type="text" v-model="planet.name" />
         </td>
         <td v-else>{{ planet.name }}</td>
-        <td v-if="editing === planet.id">
+        <td v-if="editing === planet._id">
           <input type="number" v-model="planet.radius">
         </td>
         <td v-else>{{ planet.radius }}</td>
-        <td v-if="editing === planet.id">
+        <td v-if="editing === planet._id">
           <input type="number" v-model="planet.distance">
         </td>
         <td v-else>{{ planet.distance }}</td>
-        <td v-if="editing === planet.id">
+        <td v-if="editing === planet._id">
           <button @click="editPlanet(planet)">Save</button>
           <button class="muted-button" @click="cancelEdit(planet)">Cancel</button>
         </td>
@@ -61,7 +61,7 @@ export default {
   methods: {
     editMode(planet) {
       this.cachedPlanet = Object.assign({}, planet)
-      this.editing = planet.id
+      this.editing = planet._id
     },
     cancelEdit(planet) {
       Object.assign(planet, this.cachedPlanet)
@@ -69,7 +69,7 @@ export default {
     },
     editPlanet(planet) {
       if(planet.name === '' || planet.radius === '' || planet.distance === '') return
-      this.$emit('edit:planet', planet.id, planet)
+      this.$emit('edit:planet', planet._id, planet)
       this.editing = null
     },
     toggleCheckBox(planet) {
