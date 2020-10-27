@@ -1,0 +1,16 @@
+version: '3'
+services: 
+  app: 
+    container_name: docker-planet
+    restart: always
+    build: ./backend
+    ports: 
+      - '3000:3000'
+    environment:
+      - MONGO_URI=${MONGO_URI}
+  ui:
+    build: ./frontend
+    ports:
+      - '8080:8080'
+    depends_on: 
+      - app
