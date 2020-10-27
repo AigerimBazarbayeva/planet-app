@@ -4,8 +4,10 @@ const mongoose = require('mongoose')
 const { PORT, mongoUri } = require('./config')
 const cors = require('cors')
 const morgan = require('morgan')
+const dotenv = require('dotenv')
 const planetRoutes = require('./routes/api/planets')
 
+dotenv.config()
 app.use(cors())
 app.use(morgan('tiny'))
 
