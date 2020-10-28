@@ -29,13 +29,14 @@ Planet Service uses a number of open source projects to work properly, so called
     
   Response example: 
   
-[{"_id":"5f96c972260be005f7361f5d","name":"a","radius":12,"distance":21,"__v":0},
-{"_id":"5f96e09c3dddf9210e653c89","name":"asdada","radius":34,"distance":43,"__v":0},
-{"_id":"5f96ff1e3dddf9210e653c8c","name":"sdf","radius":256,"distance":333,"__v":0},
-{"_id":"5f9757351f296f211d168df3","name":"a","radius":22,"distance":22,"__v":0},
-{"_id":"5f9757431f296f211d168df4","name":"as","radius":209,"distance":212,"__v":0},
-{"_id":"5f9757501f296f211d168df5","name":"aar","radius":46,"distance":58,"__v":0},
-{"_id":"5f975ff24486102b4a27cb33","name":"a","radius":6,"distance":7,"__v":0}]
+[{"_id":"5f96c972260be005f7361f5d","name":"Earth","radius":6371,"distance":149,"v":0},
+{"_id":"5f96e09c3dddf9210e653c89","name":"Mars","radius":3389,"distance":215,"v":0},
+{"_id":"5f96ff1e3dddf9210e653c8c","name":"Venus","radius":6051,"distance":108,"v":0},
+{"_id":"5f9757351f296f211d168df3","name":"Mercury","radius":2439,"distance":57,"v":0},
+{"_id":"5f9757431f296f211d168df4","name":"Saturn","radius":58232,"distance":1434,"v":0},
+{"_id":"5f9757501f296f211d168df5","name":"Uranus","radius":25362,"distance": 2871, "v":0},
+{"_id":"5f975ff24486102b4a27cb33","name":"Neptune","radius":24622,"distance": 4495 ,"v":0},
+{"_id":"5f975ff24486102b4a27cb33","name":"Pluto","radius":1188,"distance": 6000,"v":0}]
 
 Response code: 200: in case of success, 500: in case of failure
  
