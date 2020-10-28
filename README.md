@@ -55,7 +55,7 @@ Response code: 200: in case of success, 500: in case of failure
   
   distance: type: Number, description: distance of the planet to the Sun
   
-  Response example: {"distance":290}
+  Response example: {"distance":2909}
   
   Response code: 200: in case of success, 500: in case of failure
   
@@ -75,7 +75,7 @@ Response code: 200: in case of success, 500: in case of failure
     radius: type: Number, description: radius of the planet
     distance: type: Number, description: distance of the planet to the Sun
     
-  Response example: {"_id":"5f9757501f296f211d168df5","name":"aa","radius":4,"distance":5,"__v":0}
+  Response example: {"_id":"5f96c972260be005f7361f5d","name":"Earth","radius":6371,"distance":149,"v":0}
   
   Response code: 200: in case of success, 500: in case of failure
 
@@ -96,7 +96,7 @@ Response code: 200: in case of success, 500: in case of failure
     radius: type: Number, description: radius of the planet
     distance: type: Number, description: distance of the planet to the Sun
     
-  Response example: {"_id":"5f96ff1e3dddf9210e653c8c","name":"sdf","radius":"256","distance":333,"__v":0}
+  Response example: {"_id":"5f96c972260be005f7361f5d","name":"Earth","radius":6371,"distance":149,"v":0}
   
   Response code: 200: in case of success, 500: in case of failure
 
@@ -116,7 +116,7 @@ Response code: 200: in case of success, 500: in case of failure
     radius: type: Number, description: radius of the planet
     distance: type: Number, description: distance of the planet to the Sun
     
-  Response example: {"_id":"5f9757501f296f211d168df5","name":"aar","radius":46,"distance":58,"__v":0}
+  Response example: {"_id":"5f96c972260be005f7361f5d","name":"Earth","radius":6371,"distance":149,"v":0}
   
   Response code: 200: in case of success, 500: in case of failure
 
